@@ -1,0 +1,82 @@
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  /*清除移动端点击高亮效果*/
+  -webkit-box-sizing: border-box;
+  /*兼容移动端主流浏览器*/
+  box-sizing: border-box; }
+
+body {
+  font-family: "Arial","Helvetica","Microsoft YaHei","微软雅黑","微軟雅黑","宋体";
+  color: #454545;
+  background-color: #fff;
+  font-size: 14px;
+  position: relative; }
+  @font-face {
+    font-family: 'iconfont';  /* project id 997630 */
+    src: url('//at.alicdn.com/t/font_997630_qrz4168u497.eot');
+    src: url('//at.alicdn.com/t/font_997630_qrz4168u497.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_997630_qrz4168u497.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_997630_qrz4168u497.woff') format('woff'),
+    url('//at.alicdn.com/t/font_997630_qrz4168u497.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_997630_qrz4168u497.svg#iconfont') format('svg');
+  }
+  .iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
+i, em {
+  font-style: normal; }
+
+a {
+  text-decoration: none;
+  color: #454545; }
+
+ul, ol {
+  list-style: none; }
+
+section {
+  position: relative; }
+
+input, button, textarea {
+  background-color: transparent;
+  border: none;
+  font-size: inherit; }
+
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #999;
+  letter-spacing: 1px; }
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  letter-spacing: 1px; }
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+  letter-spacing: 1px; }
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #999;
+  letter-spacing: 1px; }
+
+img {
+  display: block;
+  width: 100%; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal; }
+
+
+.mainCon{
+  width: 90%;
+  margin: 0 auto;
+}
