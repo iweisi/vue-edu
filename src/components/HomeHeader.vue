@@ -6,7 +6,7 @@
         <router-link to='/home/3'>视频</router-link>
         <router-link to='/home/4'>音频</router-link>
         <router-link to='/home/5'>专栏</router-link>
-        <router-link to='/home/6'>会员</router-link>
+        <!-- <router-link to='/home/6'>会员</router-link> -->
     </div>
     <div class="headSerch">
         <div>

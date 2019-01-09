@@ -1,0 +1,39 @@
+[
+    {
+        "author": "周凤仪",
+        "authorId": 1,
+        "authorHead":"/img/1546848138(1).71a54566.jpg",
+        "authorIntro":"全球知名銅鈸 Zildjian 及鼓廠 Mapex台灣區代言人",
+        "isFollow": true,
+        "video":[{
+            "tag": "video",
+            "isHot": false,
+            "isCollect": false,
+            "views": 20.0,
+            "src": "/img/1546854793(1).53c1cfd8.jpg",
+            "videoSrc": "/img/1546846971(1).36593333.jpg",
+            "title": "1《兰陵王入阵曲》-五月天 架子鼓视频",
+            "courseId": 1,
+            "det": "眼中是映入自己的梦境， 未来是照进现实的投影； 看太多会迷前方的路， 想太多会失心底的真。 在现实聆听未来的声音， 嘘 别闹..."
+        }],
+        "ImageText":[{
+            "tag": "ImageText",
+            "isHot": false,
+            "isCollect": false,
+            "views": 20.0,
+            "src": "/img/1546854793(1).53c1cfd8.jpg",
+            "title": "1《兰陵王入阵曲》-五月天 架子鼓视频",
+            "courseId": 1,
+            "det": "眼中是映入自己的梦境， 未来是照进现实的投影； 看太多会迷前方的路， 想太多会失心底的真。 在现实聆听未来的声音， 嘘 别闹..."
+        }],
+        "live":{
+            "tag": "live",
+            "views": 20.0,
+            "src": "/img/1546854793(1).53c1cfd8.jpg",
+            "liveSrc": "/img/1546846971(1).36593333.jpg",
+            "title": "1《兰陵王入阵曲》-五月天 架子鼓视频",
+            "liveId": 1,
+            "det": "眼中是映入自己的梦境， 未来是照进现实的投影； 看太多会迷前方的路， 想太多会失心底的真。 在现实聆听未来的声音， 嘘 别闹..."
+        }
+    }
+]

@@ -9,15 +9,6 @@
       </div>
       <h4>{{courseDet.title}}</h4>
       <div class="msg">
-        <!-- <el-collapse>
-          <el-collapse-item>
-            <template slot="title">
-              1.3万人观看&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;详情<i class="iconfont">&#xe661;</i>
-            </template>
-            <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-            <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
-          </el-collapse-item>
-        </el-collapse> -->
         <div>              
           <div @click="toggle">{{courseDet.views}}万人观看&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;详情<i class="iconfont">&#xe661;</i></div> 
           <div class="intro" ref="intro">
@@ -85,8 +76,9 @@ export default {
     this.CourseDet()
   },
   computed: {
+    // 获取请求的id
     courseId(){
-      // 这边的id是当时设置router-link传的params属性值
+      // 这边的id是当时设置router-link中params传的key（id）
       return this.$route.params.id
     }
   }

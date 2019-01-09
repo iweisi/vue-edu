@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
-    <div style="height:50px;"></div>
+    <div class="footNav"></div>
     <div id="nav">
       <router-link to="/home"><i class="iconfont">&#xe6bb;</i>首页</router-link>
       <router-link to="/study"><i class="iconfont">&#xe742;</i>学习</router-link>

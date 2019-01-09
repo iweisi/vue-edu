@@ -21,3 +21,7 @@ export let getHotCourse = () => {
 export let getCourseDet = (id) => {
     return axios.get(`/getCourseDet?id=${id}`)
 }
+
+export let pagination = (index) => {
+    return axios.get(`/page?index=${index}`)
+}

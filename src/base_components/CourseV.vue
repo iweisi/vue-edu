@@ -2,24 +2,15 @@
   <div class="course">
     <slot name="title"></slot>
     <div class="course-con">
-        <div class="course-list">
-            <div class="img"><img src="../assets/1546604982(1).png" alt=""></div>
+        <router-link v-for="item in courses" :key="item.courseId" :to='{name:"courseDet",params:{id:item.courseId}}' tag='div' class="course-list">
+            <div class="img"><img :src="item.src" alt=""></div>
             <div class="title">
-                <h4>《兰陵王入阵曲》-五月天 架子鼓视频</h4>
+                <h4>{{item.title}}</h4>
                 <div>
-                    <span><i class="iconfont">&#xe74f;</i>20万</span>
+                    <span><i class="iconfont">&#xe74f;</i>{{item.views}}万</span>
                 </div>
             </div>
-        </div>
-        <div class="course-list">
-            <div class="img"><img src="../assets/1546604941(1).png" alt=""></div>
-            <div class="title">
-                <h4>《兰陵王入阵曲》-五月天 架子鼓视频</h4>
-                <div>
-                    <span><i class="iconfont">&#xe74f;</i>20万</span>
-                </div>
-            </div>
-        </div>
+        </router-link>
     </div>
   </div>
 </template>
@@ -31,7 +22,8 @@ export default {
   name: '',
   components: {
     
-  }
+  },
+  props:['courses']
 }
 </script>
 
@@ -45,10 +37,11 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
         >div{
             display: flex;
             flex-direction: column;
-            margin: 30px 0;
+            margin-top: 30px;
             &.course-list{
                 width: 45%;
             }

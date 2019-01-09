@@ -14,7 +14,7 @@
           <p><i class="iconfont">&#xe6a4;</i> 换一拨</p>
         </div>  
       </CourseH> 
-      <CourseV>
+      <CourseV :courses='courses'>
         <div slot="title">
           <h2><router-link to='/home'>吉他教学专区 ></router-link></h2>
         </div>  
@@ -28,7 +28,7 @@
 import Swiper from '../base_components/Swiper.vue'
 import CourseH from '../base_components/CourseH.vue'
 import CourseV from '../base_components/CourseV.vue'
-import {getSwiperImg,getHotCourse} from '../api/home.js'
+import {getSwiperImg,getHotCourse,pagination} from '../api/home.js'
 
 export default {
   data(){
@@ -36,8 +36,12 @@ export default {
       swiperImg:[],
       hotCourses:[],
       order:0
+      /* courses:[],
+      pageIndex:1,
+      hasMore:true */
     }
   },
+  props:['courses'],
   name: '',
   components: {
     CourseH,CourseV,Swiper
@@ -45,12 +49,10 @@ export default {
   methods:{
     async getSwiperImgs(){
       this.swiperImg = await getSwiperImg()
-      console.log(this.swiperImg);
     },
     async getHotCourses(){
       this.hotCourses = await getHotCourse()
-      console.log(this.hotCourses);
-    }
+    },
   },
   created(){
     this.getSwiperImgs()

@@ -29,6 +29,7 @@ http.createServer((req,res) => {
     // 获取请求地址和参数
     let {pathname,query} = url.parse(req.url,true)  
     let courseId = parseInt(query.id)
+    let pageIndex = parseInt(query.index)
     
     switch(req.method){
         case "GET":
@@ -42,6 +43,18 @@ http.createServer((req,res) => {
                 courses = courses.filter((item) => item.isHot).slice(0,3)
                 // 因为res.end()传的参数必须是string或者Buffer类型，所以需要把read函数传的对象参数转为字符串
                 res.end(JSON.stringify(courses));
+            })
+        }
+        if(pathname === '/page'){
+            res.writeHead(200, {'Content-Type': 'application/json;charset=utf8' });
+            read((courses) => {
+                let hasMore = true
+                if(courses.length <= pageIndex*4){
+                    hasMore = false
+                }
+                courses = courses.reverse().slice((pageIndex-1)*4,pageIndex*4)
+                // 因为res.end()传的参数必须是string或者Buffer类型，所以需要把read函数传的对象参数转为字符串
+                res.end(JSON.stringify({hasMore,courses}));
             })
         }
         if(pathname === '/getCourseDet'){

@@ -25,5 +25,11 @@ npm run test
 npm run lint
 ```
 
+### 开启本地服务
+```
+cd mock
+node server.js
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
