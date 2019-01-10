@@ -25,3 +25,7 @@ export let getCourseDet = (id) => {
 export let pagination = (index) => {
     return axios.get(`/page?index=${index}`)
 }
+
+export let getAuthors = (index) => {
+    return axios.get(`/author?index=${index}`)
+}

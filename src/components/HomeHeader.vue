@@ -30,6 +30,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.head{
+  padding: 10px 0;
+  background-color: #fff;
   .headNav{
     font-size: 20px;
     display: flex;
@@ -78,5 +81,6 @@ export default {
       font-size: 25px;
     }
   }
+}
 </style>
 

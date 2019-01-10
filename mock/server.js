@@ -16,6 +16,16 @@ function read(cb){
         }
     })
 }
+function readAut(cb){
+    fs.readFile('./authorMsg.json','utf8',(err,data) => {
+        if(err || data.length === 0){
+            cb([])
+        }else{
+            // 因为上面readFile方法加了‘utf8’,将data转为了字符串，所以这边需要用parse解析出json对象
+            cb(JSON.parse(data))
+        }
+    })
+}
 
 
 http.createServer((req,res) => { 
@@ -63,6 +73,18 @@ http.createServer((req,res) => {
                 let course = courses.find((item) => item.courseId === courseId)
                 // 因为res.end()传的参数必须是string或者Buffer类型，所以需要把read函数传的对象参数转为字符串
                 res.end(JSON.stringify(course));
+            })
+        }
+        if(pathname === '/author'){
+            res.writeHead(200, {'Content-Type': 'application/json;charset=utf8' });
+            readAut((authors) => {
+                let hasMore = true
+                if(authors.length <= pageIndex*4){
+                    hasMore = false
+                }
+                authors = authors.reverse().slice((pageIndex-1)*4,pageIndex*4)
+                // 因为res.end()传的参数必须是string或者Buffer类型，所以需要把read函数传的对象参数转为字符串
+                res.end(JSON.stringify({hasMore,authors}));
             })
         }
     }
