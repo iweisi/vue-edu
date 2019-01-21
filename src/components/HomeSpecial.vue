@@ -1,9 +1,15 @@
 <template>
   <div class="mainCon" @scroll="more" ref="authors">
-    <Tabs></Tabs>
+    <div class="tabs">
+        <router-link to='?tech=all' append>全部老师</router-link> 
+        <span>|</span>
+        <router-link to='?tech=recommend' append>推荐老师</router-link>
+        <span>|</span>
+        <router-link to='?tech=new' append>最新老师</router-link>
+    </div>
     <ul class="authorList">
       <li v-for="(item,index) in authors" :key="index" ref="authorList">
-        <router-link tag='div' :to='{name:"",params:{id:item.authorId}}'>
+        <router-link tag='div' :to='{name:"authorDet",params:{id:item.authorId}}'>
           <!-- <img src="../assets/1546848138(1).jpg" alt=""> -->
           <img :src="item.authorHead" alt="">
           <h3>{{item.author}}</h3>
@@ -20,7 +26,7 @@
 
 <script>
 // @ is an alias to /src
-import Tabs from '../base_components/Tabs.vue'
+// import Tabs from '../base_components/Tabs.vue'
 import {getAuthors} from '../api/home.js'
 
 let flag = true
@@ -35,12 +41,11 @@ export default {
   },
   name: '',
   components: {
-    Tabs
+    
   },
   methods: {
     recommend(){
       console.log(this.$el);
-      
     },
     waterFollow(){
       // console.log(this.$refs);  
@@ -66,10 +71,10 @@ export default {
       if(flag && scrollHeight <= scrollTop + clientHeight +20){
         flag = false
         this.index++
-        this.getAuthors()
+        this.getAuthor()
       }
     },
-    async getAuthors(){
+    async getAuthor(){
       let {hasMore,authors} = await getAuthors(this.index)
       this.authors = [...this.authors,...authors]
       this.hasMore = hasMore
@@ -80,7 +85,7 @@ export default {
     }
   },
   created(){
-    this.getAuthors()
+    this.getAuthor()
   },
   updated(){
     this.waterFollow()

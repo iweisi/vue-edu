@@ -26,6 +26,7 @@
         <h2 slot="title">相关推荐</h2>
       </CourseH>
     </div>
+    <p class="footNav"></p>
   </div>
 </template>
 
@@ -91,7 +92,7 @@ export default {
     .back{
       position: absolute;
       top: 15px;
-      left: 15px;
+      left: 5%;
       i{
         font-size: 30px;
         color: rgba(45,45,45,.7)

@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <router-view/>
-    <div class="footNav"></div>
+    <!-- <div class="footNav"></div> -->
     <div id="nav">
       <router-link to="/home"><i class="iconfont">&#xe6bb;</i>首页</router-link>
       <router-link to="/study"><i class="iconfont">&#xe742;</i>学习</router-link>
       <router-link to="/publish"><i class="iconfont" style="font-size:30px;">&#xe6d9;</i></router-link>
-      <router-link to="/find"><i class="iconfont">&#xe73d;</i>发现</router-link>
+      <router-link to="/message"><i class="iconfont">&#xe73d;</i>消息</router-link>
       <router-link to="/my"><i class="iconfont">&#xe735;</i>我的</router-link>
     </div>
   </div>

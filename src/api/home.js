@@ -29,3 +29,7 @@ export let pagination = (index) => {
 export let getAuthors = (index) => {
     return axios.get(`/author?index=${index}`)
 }
+
+export let getAuthorDet = (id) => {
+    return axios.get(`/getAuthorDet?id=${id}`)
+}

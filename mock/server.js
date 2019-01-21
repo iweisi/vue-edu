@@ -5,22 +5,12 @@ const url = require('url')
 
 let swiperImg = require('./swiper')
 
-function read(cb){
-    fs.readFile('./courseMeg.json','utf8',(err,data) => {
+function read(work,cb){
+    fs.readFile('./'+work,'utf8',(err,data) => {
         if(err || data.length === 0){
             cb([])
         }else{
             // console.log(typeof data);
-            // 因为上面readFile方法加了‘utf8’,将data转为了字符串，所以这边需要用parse解析出json对象
-            cb(JSON.parse(data))
-        }
-    })
-}
-function readAut(cb){
-    fs.readFile('./authorMsg.json','utf8',(err,data) => {
-        if(err || data.length === 0){
-            cb([])
-        }else{
             // 因为上面readFile方法加了‘utf8’,将data转为了字符串，所以这边需要用parse解析出json对象
             cb(JSON.parse(data))
         }
@@ -38,7 +28,7 @@ http.createServer((req,res) => {
     
     // 获取请求地址和参数
     let {pathname,query} = url.parse(req.url,true)  
-    let courseId = parseInt(query.id)
+    let Id = parseInt(query.id)
     let pageIndex = parseInt(query.index)
     
     switch(req.method){
@@ -49,7 +39,7 @@ http.createServer((req,res) => {
         }
         if(pathname === '/getHotCourse'){
             res.writeHead(200, {'Content-Type': 'application/json;charset=utf8' });
-            read((courses) => {
+            read('courseMeg.json',(courses) => {
                 courses = courses.filter((item) => item.isHot).slice(0,3)
                 // 因为res.end()传的参数必须是string或者Buffer类型，所以需要把read函数传的对象参数转为字符串
                 res.end(JSON.stringify(courses));
@@ -57,7 +47,7 @@ http.createServer((req,res) => {
         }
         if(pathname === '/page'){
             res.writeHead(200, {'Content-Type': 'application/json;charset=utf8' });
-            read((courses) => {
+            read('courseMeg.json',(courses) => {
                 let hasMore = true
                 if(courses.length <= pageIndex*4){
                     hasMore = false
@@ -69,15 +59,15 @@ http.createServer((req,res) => {
         }
         if(pathname === '/getCourseDet'){
             res.writeHead(200, {'Content-Type': 'application/json;charset=utf8' });
-            read((courses) => {
-                let course = courses.find((item) => item.courseId === courseId)
+            read('courseMeg.json',(courses) => {
+                let course = courses.find((item) => item.courseId === Id)
                 // 因为res.end()传的参数必须是string或者Buffer类型，所以需要把read函数传的对象参数转为字符串
                 res.end(JSON.stringify(course));
             })
         }
         if(pathname === '/author'){
             res.writeHead(200, {'Content-Type': 'application/json;charset=utf8' });
-            readAut((authors) => {
+            read('authorMsg.json',(authors) => {
                 let hasMore = true
                 if(authors.length <= pageIndex*4){
                     hasMore = false
@@ -85,6 +75,14 @@ http.createServer((req,res) => {
                 authors = authors.reverse().slice((pageIndex-1)*4,pageIndex*4)
                 // 因为res.end()传的参数必须是string或者Buffer类型，所以需要把read函数传的对象参数转为字符串
                 res.end(JSON.stringify({hasMore,authors}));
+            })
+        }
+        if(pathname === '/getAuthorDet'){
+            res.writeHead(200, {'Content-Type': 'application/json;charset=utf8' });
+            read('authorMsg.json',(authors) => {
+                let author = authors.find((item) => item.authorId === Id)
+                // 因为res.end()传的参数必须是string或者Buffer类型，所以需要把read函数传的对象参数转为字符串
+                res.end(JSON.stringify(author));
             })
         }
     }
