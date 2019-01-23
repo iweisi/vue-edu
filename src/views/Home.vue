@@ -28,7 +28,7 @@ export default {
     HomeHeader,HomeIndex
   },
   created(){
-    this.$router.push('/home/1')
+    // this.$router.push('/home/1')
   },
   methods: {
     

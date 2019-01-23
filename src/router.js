@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import HomeIndex from './components/HomeIndex.vue'
 import HomeCourses from './components/HomeCourses.vue'
 import HomeSpecial from './components/HomeSpecial.vue'
+import AuthorList from './base_components/AuthorList.vue'
 import Study from './views/Study.vue'
 import Message from './views/Message.vue'
 import Publish from './views/Publish.vue'
@@ -14,18 +15,17 @@ import AuthorDet from './components/AuthorDet.vue'
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
+  mode: 'history',
   base: process.env.BASE_URL,
   linkActiveClass: 'a-active',
   routes: [
     {
-      path: '/',
-      redirect: '/home'
-    },
-    {
       path: '/home',
       name: 'home',
       component: Home,
+      meta: {
+        showFooter: true
+      },
       children: [
         {
           path: '1',
@@ -47,28 +47,44 @@ export default new Router({
           path: '5',
           name:'homeSpecial',
           component: HomeSpecial
+        },
+        {
+          path: '',
+          redirect: '/home/1'
         }
       ]
     },
     {
       path: '/study',
       name: 'study',
-      component: Study
+      component: Study,
+      meta:{
+        showFooter: true
+      },
     },
     {
       path: '/publish',
       name: 'publish',
-      component: Publish
+      component: Publish,
+      meta:{
+        showFooter: true
+      },
     },
     {
       path: '/message',
       name: 'message',
-      component: Message
+      component: Message,
+      meta:{
+        showFooter: true
+      },
     },
     {
       path: '/my',
       name: 'my',
-      component: My
+      component: My,
+      meta:{
+        showFooter: true
+      },
     },
     {
       path: '/courseDet/:id',
@@ -79,6 +95,10 @@ export default new Router({
       path: '/authorDet/:id',
       name: 'authorDet',
       component: AuthorDet
+    },
+    {
+      path: '/',
+      redirect: '/home'
     }
   ]
 })

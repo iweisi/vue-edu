@@ -89,13 +89,10 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-around;
   margin: 20px auto;
   overflow: hidden;
-  a{
-      position: relative;
-      &.a-active{
-          color: #000;
-          font-weight: bold;
-      }
-  }
+}
+.tabs .a-active{
+  color: #000;
+  font-weight: bold;
 }
 
 .authorDet .swiper-pagination-bullet-active{

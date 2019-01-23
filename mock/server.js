@@ -30,6 +30,7 @@ http.createServer((req,res) => {
     let {pathname,query} = url.parse(req.url,true)  
     let Id = parseInt(query.id)
     let pageIndex = parseInt(query.index)
+    let tech = query.tech
     
     switch(req.method){
         case "GET":
@@ -71,6 +72,11 @@ http.createServer((req,res) => {
                 let hasMore = true
                 if(authors.length <= pageIndex*4){
                     hasMore = false
+                }
+                if(tech === 'recommend'){
+                    authors = authors.filter((item) => item.isRecommend)
+                }else if(tech === 'new'){
+                    authors = authors.slice(-10)
                 }
                 authors = authors.reverse().slice((pageIndex-1)*4,pageIndex*4)
                 // 因为res.end()传的参数必须是string或者Buffer类型，所以需要把read函数传的对象参数转为字符串

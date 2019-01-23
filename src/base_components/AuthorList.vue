@@ -16,14 +16,73 @@
 
 <script>
 // @ is an alias to /src
+// import Tabs from '../base_components/Tabs.vue'
+import {getAuthors} from '../api/home.js'
 
+let flag = true
+let top = [0,0]
 export default {
+  data(){
+    return {
+      authors: [],
+      index: 1,
+      hasMore: true
+    }
+  },
   name: '',
   components: {
     
+  },
+  methods: {
+    recommend(){
+      console.log(this.$el);
+    },
+    waterFollow(){
+      // console.log(this.$refs);  
+      let lis = this.$refs.authorList
+      // console.log(lis);
+      lis.forEach((el,index) => {
+        // 需要获取到top数组中最小值的值和位置
+        if(index>=(this.index-1)*4){
+          let min = Math.min(...top)
+          let minIndex = top.indexOf(min)
+          el.style.top = min + 'px'
+          el.style.left = minIndex*50 + 2.5 + '%'
+          top[minIndex] += el.clientHeight + 100
+          el.parentNode.style.height = top[minIndex] + 'px'
+          /* console.log(el.offsetTop);
+          console.log(`${index}---:最小值${min} + 元素高度${el.clientHeight} + 100 = ${top[minIndex]}`);
+          console.log('-----------------------'); */
+        }
+      });
+    },
+    more(){
+      let {scrollHeight,scrollTop,clientHeight} = this.$refs.authors
+      if(flag && scrollHeight <= scrollTop + clientHeight +20){
+        flag = false
+        this.index++
+        this.getAuthor()
+      }
+    },
+    async getAuthor(){
+      let {hasMore,authors} = await getAuthors(this.index)
+      this.authors = [...this.authors,...authors]
+      this.hasMore = hasMore
+      flag = true
+      if(!this.hasMore){
+        flag = false
+      }
+    }
+  },
+  created(){
+    this.getAuthor()
+  },
+  updated(){
+    this.waterFollow()
   }
 }
 </script>
+
 
 <style lang="scss" scoped>
 .authorList{

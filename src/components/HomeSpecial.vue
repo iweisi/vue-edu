@@ -1,11 +1,11 @@
 <template>
   <div class="mainCon" @scroll="more" ref="authors">
     <div class="tabs">
-        <router-link to='?tech=all' append>全部老师</router-link> 
+        <p @click="tab('all',1)" :class="{active : num===1? true:false}">全部老师</p> 
         <span>|</span>
-        <router-link to='?tech=recommend' append>推荐老师</router-link>
+        <p @click="tab('recommend',2)" :class="{active : num===2? true:false}">推荐老师</p>
         <span>|</span>
-        <router-link to='?tech=new' append>最新老师</router-link>
+        <p @click="tab('new',3)" :class="{active : num===3? true:false}">最新老师</p>
     </div>
     <ul class="authorList">
       <li v-for="(item,index) in authors" :key="index" ref="authorList">
@@ -31,12 +31,15 @@ import {getAuthors} from '../api/home.js'
 
 let flag = true
 let top = [0,0]
+let techtype = null;
 export default {
   data(){
     return {
       authors: [],
       index: 1,
-      hasMore: true
+      hasMore: true,
+      tech : 'all',
+      num : 1
     }
   },
   name: '',
@@ -47,12 +50,14 @@ export default {
     recommend(){
       console.log(this.$el);
     },
+    // 瀑布流布局
     waterFollow(){
       // console.log(this.$refs);  
       let lis = this.$refs.authorList
       // console.log(lis);
       lis.forEach((el,index) => {
         // 需要获取到top数组中最小值的值和位置
+        // 因为每次加载四个老师，index>=(this.index-1)*4过滤掉之前已经加载过的老师
         if(index>=(this.index-1)*4){
           let min = Math.min(...top)
           let minIndex = top.indexOf(min)
@@ -66,16 +71,28 @@ export default {
         }
       });
     },
+    // 上拉加载
     more(){
       let {scrollHeight,scrollTop,clientHeight} = this.$refs.authors
+      // 开关为真 且 1滚动体高度<=2滚动高度+3可视高度+20   （一般1=2+3，设置20px差值）
       if(flag && scrollHeight <= scrollTop + clientHeight +20){
         flag = false
         this.index++
         this.getAuthor()
       }
     },
+    // 切换老师选项
+    tab(tech,num){
+      this.num = num
+      this.tech = tech
+      top = [0,0]
+      this.authors = []
+      this.index = 1
+      this.hasMore = true
+      this.getAuthor()
+    },
     async getAuthor(){
-      let {hasMore,authors} = await getAuthors(this.index)
+      let {hasMore,authors} = await getAuthors(this.index,this.tech)
       this.authors = [...this.authors,...authors]
       this.hasMore = hasMore
       flag = true
@@ -85,6 +102,7 @@ export default {
     }
   },
   created(){
+    top = [0,0]
     this.getAuthor()
   },
   updated(){
@@ -94,6 +112,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .tabs .active{
+    font-weight: bold;
+    color: #000;
+  }
   .authorList{
     display: flex;
     justify-content: space-around;
