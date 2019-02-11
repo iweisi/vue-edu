@@ -47,9 +47,6 @@ export default {
     
   },
   methods: {
-    recommend(){
-      console.log(this.$el);
-    },
     // 瀑布流布局
     waterFollow(){
       // console.log(this.$refs);  
@@ -63,10 +60,10 @@ export default {
           let minIndex = top.indexOf(min)
           el.style.top = min + 'px'
           el.style.left = minIndex*50 + 2.5 + '%'
-          top[minIndex] += el.clientHeight + 100
+          top[minIndex] += el.clientHeight + 50
           el.parentNode.style.height = top[minIndex] + 'px'
           /* console.log(el.offsetTop);
-          console.log(`${index}---:最小值${min} + 元素高度${el.clientHeight} + 100 = ${top[minIndex]}`);
+          console.log(`${index}---:最小值${min} + 元素高度${el.clientHeight} + 50 = ${top[minIndex]}`);
           console.log('-----------------------'); */
         }
       });
