@@ -24,16 +24,16 @@ node server.js
 
 ##### 	首页
 
-![](C:\Users\Administrator\Desktop\jinxun\vue\vue-edu\exampleImg\1549858020(1).jpg)
+![](https://github.com/lajidemo/vue-edu/blob/master/exampleImg/1549858020(1).jpg?raw=true)
 
 ##### 	课程详情
 
-![](C:\Users\Administrator\Desktop\jinxun\vue\vue-edu\exampleImg\1549858087(1).jpg)
+![](https://github.com/lajidemo/vue-edu/blob/master/exampleImg/1549858087(1).jpg?raw=true)
 
 ##### 	老师列表
 
-![](C:\Users\Administrator\Desktop\jinxun\vue\vue-edu\exampleImg\1549858272(1).jpg)
+![](https://github.com/lajidemo/vue-edu/blob/master/exampleImg/1549858272(1).jpg?raw=true)
 
 ##### 	老师详情
 
-![](C:\Users\Administrator\Desktop\jinxun\vue\vue-edu\exampleImg\1549858319(1).jpg)
+![](https://github.com/lajidemo/vue-edu/blob/master/exampleImg/1549858319(1).jpg?raw=true)
